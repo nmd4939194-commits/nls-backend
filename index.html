@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>細胞生物共振熵值分析與臨床保養報告</title>
+<style>
+  @page { size: A4 portrait; margin: 8mm 10mm; }
+  *, *::before, *::after { box-sizing: border-box; }
+  body {
+    font-family: "PingFang TC", "Microsoft JhengHei", sans-serif;
+    font-size: 8.5pt;
+    line-height: 1.25;
+    color: #2c3e50;
+    margin: 0; padding: 0;
+    background-color: #ffffff;
+  }
+  .control-bar {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+  }
+  .control-bar input, .control-bar button {
+    font-size: 9pt;
+    padding: 6px 12px;
+    margin-right: 8px;
+  }
+  .header {
+    background: linear-gradient(135deg, #1f4e79, #2c3e50);
+    color: #ffffff;
+    padding: 8px 12px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+  }
+  .header table { width: 100%; border-collapse: collapse; }
+  .header td { border: none; padding: 0; color: #fff; }
+  .title { font-size: 13pt; font-weight: bold; }
+  .meta { font-size: 8pt; text-align: right; }
+  .legend-box {
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    padding: 4px 8px;
+    margin-bottom: 6px;
+    font-size: 7.5pt;
+  }
+  .badge { display: inline-block; padding: 1px 4px; border-radius: 3px; font-weight: bold; }
+  .lvl-1 { background: #e2efda; color: #375623; }
+  .lvl-2 { background: #f2f2f2; color: #595959; }
+  .lvl-3 { background: #fff2cc; color: #7f6000; }
+  .lvl-4 { background: #fce4d6; color: #c65911; }
+  .lvl-5 { background: #f8cbad; color: #c65911; }
+  .lvl-6 { background: #c65911; color: #ffffff; }
+  table.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 6px;
+    font-size: 8pt;
+  }
+  table.data-table th, table.data-table td {
+    border: 1px solid #d9d9d9;
+    padding: 4px 6px;
+    text-align: center;
+  }
+  table.data-table th { background-color: #1f4e79; color: #ffffff; }
+  .page-break { page-break-before: always; }
+  @media print { .no-print { display: none !important; } }
+</style>
+</head>
+<body>
+
+  <div class="control-bar no-print">
+    <strong>步驟 1：匯入 .xch 檔案</strong>
+    <input type="file" id="xchFileInput" accept=".xch">
+    <button onclick="handleFileUpload()">解析數據</button>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <strong>步驟 2：匯出</strong>
+    <button onclick="window.print()">列印 / 存為 A4 兩頁 PDF</button>
+  </div>
+
+  <div class="header">
+    <table>
+      <tr>
+        <td class="title">細胞生物共振熵值分析報告 (第 1 頁)</td>
+        <td class="meta" id="fileMeta">檔案：未載入</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="legend-box">
+    <strong>等級說明：</strong>
+    <span class="badge lvl-1">1級 充沛</span>
+    <span class="badge lvl-2">2級 標準</span>
+    <span class="badge lvl-3">3級 輕度代償</span>
+    <span class="badge lvl-4">4級 中度負擔</span>
+    <span class="badge lvl-5">5級 嚴重代償不全</span>
+    <span class="badge lvl-6">6級 結構異常</span>
+  </div>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th style="width: 30%;">檢測項目 / 器官名稱</th>
+        <th>1級</th><th>2級</th><th>3級</th><th>4級</th><th>5級</th><th>6級</th>
+        <th>主要評估</th>
+      </tr>
+    </thead>
+    <tbody id="reportTbody">
+      <tr><td colspan="7">請於上方選擇並匯入 .xch 檔案...</td></tr>
+    </tbody>
+  </table>
+
+  <div class="page-break"></div>
+
+  <div class="header">
+    <table>
+      <tr>
+        <td class="title">臨床失衡分析與生活保養指南 (第 2 頁)</td>
+        <td class="meta">個人化保養建議</td>
+      </tr>
+    </table>
+  </div>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th style="width: 25%;">檢測系統項目</th>
+        <th style="width: 37.5%;">臨床失衡狀態分析</th>
+        <th style="width: 37.5%;">生活保養與健康指南</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b>胃與上消化道</b></td>
+        <td style="text-align:left;">胃黏膜屏障保護力下降，消化液分泌紊亂，易有胃脹氣與胃酸逆流。</td>
+        <td style="text-align:left;">飲食定時定量，細嚼慢嚥；避免辛辣咖啡因；飯後散步20分鐘，睡前3小時禁食。</td>
+      </tr>
+      <tr>
+        <td><b>小腸與腸道微生態</b></td>
+        <td style="text-align:left;">腸道微生態菌群失衡，腸黏膜吸收與免疫屏障機能下降。</td>
+        <td style="text-align:left;">每日補充高活性益生菌與膳食纖維，減少精緻高糖及加工食品。</td>
+      </tr>
+      <tr>
+        <td><b>心腦血管微循環</b></td>
+        <td style="text-align:left;">腦部動脈環與冠狀動脈微循環阻力偏高，血管張力亢進。</td>
+        <td style="text-align:left;">採取地中海飲食，補充 Omega-3 深海魚油，保持情緒平穩，定期追蹤血壓。</td>
+      </tr>
+    </tbody>
+  </table>
+
+<script>
+// 請替換為步驟 2 中取得的 Render 後端網址
+const BACKEND_URL = 'https://YOUR-RENDER-BACKEND-URL.onrender.com';
+
+async function handleFileUpload() {
+  const fileInput = document.getElementById('xchFileInput');
+  if (!fileInput.files[0]) return alert('請選擇 .xch 檔案！');
+
+  const formData = new FormData();
+  formData.append('xchFile', fileInput.files[0]);
+
+  document.getElementById('fileMeta').innerText = `解析中: ${fileInput.files[0].name}...`;
+
+  try {
+    const res = await fetch(`${BACKEND_URL}/api/upload`, {
+      method: 'POST',
+      body: formData
+    });
+    const result = await res.json();
+    
+    if (result.success) {
+      document.getElementById('fileMeta').innerText = `檔案：${fileInput.files[0].name}`;
+      renderTable(result.data);
+    } else {
+      alert('解析失敗：' + result.error);
+    }
+  } catch (err) {
+    alert('無法連線至後端伺服器，請檢查 Render 網址設定');
+  }
+}
+
+function renderTable(data) {
+  const tbody = document.getElementById('reportTbody');
+  tbody.innerHTML = '';
+
+  data.forEach(item => {
+    let status = '良好';
+    if (item.l5 > 3 || item.l4 > 20) status = '<span style="color:#c65911;font-weight:bold;">中高度負擔</span>';
+    else if (item.l3 > 15) status = '輕度代償';
+
+    tbody.innerHTML += `
+      <tr>
+        <td style="text-align:left;"><b>${item.name}</b></td>
+        <td>${item.l1}</td>
+        <td>${item.l2}</td>
+        <td>${item.l3}</td>
+        <td>${item.l4}</td>
+        <td>${item.l5}</td>
+        <td>${item.l6}</td>
+        <td>${status}</td>
+      </tr>
+    `;
+  });
+}
+</script>
+
+</body>
+</html>
